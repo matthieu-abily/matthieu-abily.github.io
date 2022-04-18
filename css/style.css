@@ -1,6 +1,8 @@
 html, body {
     background: black;
     color: white;
+    /* font below */
+    font-family: 'Bebas Neue'; 
 }
 
 #title {
@@ -28,12 +30,22 @@ html, body {
     display: inline-block;
     height: 13em; width: 13em;
     margin: 1em;
-    transition: transform .7s ease-in-out;
+    transition: all .7s ease-in-out;
 }
 #content .logo-element:hover {
     transform: rotate(360deg);
+    filter: hue-rotate(230deg);
+}
+#content #legend {
+    font-size: 1.5em;
+    margin-top: 1em;
+    animation-duration: 1s;
+    animation-name: colorsparty;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #footer {
+    margin-top: 10%;
     text-align: center;
 }
