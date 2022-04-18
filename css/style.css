@@ -22,11 +22,16 @@ html, body {
 
 #content {
     text-align: center;
+    margin-top: 10%;
 }
 #content .logo-element {
     display: inline-block;
-    height: 8em; width: 8em; background: grey;
-    margin: 5em 0.5em;
+    height: 13em; width: 13em;
+    margin: 1em;
+    transition: transform .7s ease-in-out;
+}
+#content .logo-element:hover {
+    transform: rotate(360deg);
 }
 
 #footer {
