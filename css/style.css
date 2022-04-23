@@ -2,11 +2,7 @@ html, body {
     background: black;
     color: white;
     /* font below */
-    @font-face {
-        font-family: 'NaftaLight-Regular';
-        src: url("https://github.com/matthieu-abily/matthieu-abily.github.io/blob/f2756eb0233c1abf1b5a98e3c44bbd1348db6491/css/fonts/NaftaLight-Regular.ttf");
-        src: url("https://github.com/matthieu-abily/matthieu-abily.github.io/blob/f2756eb0233c1abf1b5a98e3c44bbd1348db6491/css/fonts/NaftaLight-Regular.woff"),
-        src: url("https://github.com/matthieu-abily/matthieu-abily.github.io/blob/f2756eb0233c1abf1b5a98e3c44bbd1348db6491/css/fonts/NaftaLight-Regular.woff2");
+    font-family: 'Bebas Neue';
 }
 
 #title {
