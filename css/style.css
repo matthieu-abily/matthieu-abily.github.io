@@ -22,27 +22,29 @@ html, body {
     margin-top: 0.2em;
 }
 
+@keyframes play {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+ }
+
 #content {
     text-align: center;
     margin-top: 10%;
 }
 #content .logo-element {
     display: inline-block;
-    height: 13em; width: 13em;
+    height: 220px; width: 220px;
     margin: 1em;
-    transition: all .7s ease-in-out;
+    object-position: top left;
+    object-fit: cover;
 }
 #content .logo-element:hover {
-    transform: rotate(360deg);
-    filter: hue-rotate(230deg);
+    animation: play .4s steps(4) infinite;
+    animation-direction: alternate;
 }
 #content #legend {
     font-size: 1.5em;
     margin-top: 1em;
-    animation-duration: 1s;
-    animation-name: colorsparty;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
 #footer {
