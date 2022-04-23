@@ -1,7 +1,7 @@
 html, body {
     color: white;
     /* font below */
-    font-family: 'Nafta';
+    font-family: 'Nafta', Arial, Helvetica, sans-serif;
     width: 100%; height: 100%;
 }
 
@@ -10,8 +10,8 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: radial-gradient(ellipse at center, black 50%, rgba(0, 0, 0, 0.85) 100%);
-    z-index: -1;
+    background: radial-gradient(ellipse at center, black 50%, rgba(0, 0, 0, 0.9) 100%);
+    z-index: -2;
 }
 #background #grain {
     content: '';
@@ -22,11 +22,47 @@ html, body {
     width: 200vw;
     height: 200vh;
     animation: grain 1.5s steps(6) infinite;
+    -webkit-animation: grain 1.5s steps(6) infinite;
+    -moz-animation: grain 1.5s steps(6) infinite;
+    -ms-animation: grain 1.5s steps(6) infinite;
+    -o-animation: grain 1.5s steps(6) infinite;
     z-index: -1;
-    opacity: 0.25;
+    opacity: 0.2;
 }
 
 @keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-webkit-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-moz-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-ms-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-o-keyframes grain {
     0%, 100% {transform: translate(0, 0);}
     10% {transform: translate(-5%, 10%);}
     30% {transform: translate(20%, -15%);}
@@ -49,11 +85,30 @@ html, body {
 @keyframes eye-frames {
     from { object-position:    0px; }
       to { object-position: -880px; }
- }
+}
+@-webkit-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-moz-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-ms-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-o-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
 
 #content {
     text-align: center;
     margin-top: 10%;
+}
+#content a {
+    display: inline-block;
 }
 #content .logo-element {
     display: inline-block;
@@ -61,14 +116,18 @@ html, body {
     margin: 1em;
     object-position: top left;
     object-fit: cover;
-
-    cursor: pointer;
 }
 #content .logo-element:hover {
     animation: eye-frames .4s steps(4) infinite;
+    -webkit-animation: eye-frames .4s steps(4) infinite;
+    -moz-animation: eye-frames .4s steps(4) infinite;
+    -ms-animation: eye-frames .4s steps(4) infinite;
+    -o-animation: eye-frames .4s steps(4) infinite;
     animation-direction: alternate;
-
-    cursor: pointer;
+    -webkit-animation-direction: alternate;
+    -moz-animation-direction: alternate;
+    -ms-animation-direction: alternate;
+    -o-animation-direction: alternate;
 }
 #content #legend {
     font-size: 1.5em;
