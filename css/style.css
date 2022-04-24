@@ -108,15 +108,16 @@ html, body {
 }
 #content a {
     display: inline-block;
+    cursor: pointer;
 }
-#content .logo-element {
+#content a .logo-element {
     display: inline-block;
     height: 220px; width: 220px;
     margin: 1em;
     object-position: top left;
     object-fit: cover;
 }
-#content .logo-element:hover, #content .logo-element:active {
+#content a:hover .logo-element, #content a:focus .logo-element, #content a:active .logo-element {
     animation: eye-frames .4s steps(4) infinite;
     -webkit-animation: eye-frames .4s steps(4) infinite;
     -moz-animation: eye-frames .4s steps(4) infinite;
