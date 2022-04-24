@@ -117,7 +117,7 @@ html, body {
     object-position: top left;
     object-fit: cover;
 }
-#content .logo-element:hover {
+#content .logo-element:hover, #content .logo-element:active {
     animation: eye-frames .4s steps(4) infinite;
     -webkit-animation: eye-frames .4s steps(4) infinite;
     -moz-animation: eye-frames .4s steps(4) infinite;
@@ -136,6 +136,7 @@ html, body {
 
 #footer {
     margin-top: 10%;
+    margin-bottom: 1em;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
