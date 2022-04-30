@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="css/style.css">
     <title>matthieu abily</title>
     <meta name="description" content="matthieu abily cinematography" />
+
+    <script>
+        window.onload = function() {
+            document.querySelectorAll("#content a").forEach(function(item) {
+                item.addEventListener("click", function(e) {
+                    e.preventDefault();
+
+                    setTimeout(function() {
+                        window.location = item.getAttribute("href");
+                    }, 400)
+                });
+            });
+        };
+    </script>
 </head>
 <body>
     <div id="background"><div id="grain"></div></div>

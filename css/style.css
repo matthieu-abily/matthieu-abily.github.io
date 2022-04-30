@@ -117,7 +117,7 @@ html, body {
     object-position: top left;
     object-fit: cover;
 }
-#content a:hover .logo-element, #content a:focus .logo-element, #content a:active .logo-element {
+#content a:hover .logo-element {
     animation: eye-frames .4s steps(4) infinite;
     -webkit-animation: eye-frames .4s steps(4) infinite;
     -moz-animation: eye-frames .4s steps(4) infinite;
