@@ -106,6 +106,9 @@ html, body {
     text-align: center;
     margin-top: 10%;
 }
+#content.no-margin {
+    margin-top: 0;
+}
 #content a {
     display: inline-block;
     cursor: pointer;
