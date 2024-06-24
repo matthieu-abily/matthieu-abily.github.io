@@ -1,0 +1,149 @@
+html, body {
+    color: white;
+    /* font below */
+    font-family: 'Nafta', Arial, Helvetica, sans-serif;
+}
+
+#background {
+    position: fixed; top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, black 50%, rgba(0, 0, 0, 0.9) 100%);
+    z-index: -2;
+}
+#background #grain {
+    content: '';
+    background-image: url('../images/noise-white.png');
+    background-repeat: repeat;
+    background-size: 200px;
+    position: absolute; top: -50%; left: -50%;
+    width: 200vw;
+    height: 200vh;
+    animation: grain 1.5s steps(6) infinite;
+    -webkit-animation: grain 1.5s steps(6) infinite;
+    -moz-animation: grain 1.5s steps(6) infinite;
+    -ms-animation: grain 1.5s steps(6) infinite;
+    -o-animation: grain 1.5s steps(6) infinite;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+@keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-webkit-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-moz-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-ms-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+@-o-keyframes grain {
+    0%, 100% {transform: translate(0, 0);}
+    10% {transform: translate(-5%, 10%);}
+    30% {transform: translate(20%, -15%);}
+    50% {transform: translate(-12%, 9%);}
+    70% {transform: translate(9%, -20%);}
+    90% {transform: translate(-15%, 7%);}
+}
+
+#title {
+    position: fixed;
+    font-size: 4em;
+    top: 1em;
+    left: 1em;
+}
+#title #subtitle {
+    font-size: 0.75em;
+    opacity: 0.7;
+}
+
+#menu {
+    position: fixed;
+    font-size: 2em;
+    top: 2em;
+    right: 2em;
+}
+
+#menu .item {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+#menu .item a {
+    color: white;
+    text-decoration: none;
+}
+
+@keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-webkit-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-moz-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-ms-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+@-o-keyframes eye-frames {
+    from { object-position:    0px; }
+      to { object-position: -880px; }
+}
+
+.glitched-text {
+    position: relative;
+
+    span {
+        display: inline-block;
+    }
+}
+
+#content .images-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+}
+
+#content .images-gallery li {
+    flex: 0 0 33.3333%;
+}
+
+#content .images-gallery li .img-border {
+    text-align: center;
+}
+
+#content .images-gallery .img-border img {
+    object-fit: cover;
+    width: 96%;
+    aspect-ratio: 1 / 1;
+}
