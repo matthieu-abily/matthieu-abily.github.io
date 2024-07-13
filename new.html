@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="stylesheet" href="css/fonts/fonts.css">
+    <link rel="stylesheet" href="css/fonts/nafta/nafta.css">
+    <link rel="stylesheet" href="css/fonts/fucktura/fucktura.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/new-style.css">
     <title>matthieu abily</title>
@@ -18,50 +19,69 @@
             return v;
         }
 
-        function glitchCharacter(span, randomgBackForth) {
-            if (randomgBackForth < 0) {
+        function prepareTextForGlitch(div) {
+            var text = div.textContent;
+            var splitText = text.split('');
+            div.textContent = '';
+            for (var j = 0; j < splitText.length; j++) {
+                if (splitText[j] === ' ') {
+                    div.innerHTML += ' ';
+                } else {
+                    div.innerHTML += '<span>' + splitText[j] + '</span>';
+                }
+            }
+            var spans = div.getElementsByTagName('span');
+            return spans;
+        }
+
+        function glitchCharacter(span, iterations) {
+            if (iterations < 0) {
                 span.style.transform = 'translate(0, 0)';
+                span.style.color = '';
+                span.style.fontFamily = '';
+                span.style.textShadow = '';
                 return;
             }
 
-            if (randomgBackForth === 0) {
-                span.style.transform = 'translate(' + rand(5, 15, true) + 'px, ' + rand(5, 15, true) + 'px)';
-            } else if (randomgBackForth === 1) {
-                span.style.transform = 'translate(-' + rand(5, 15, true) + 'px, -' + rand(5, 15, true) + 'px)';
-            } else {
-                span.style.transform = 'translate(' + rand(5, 15, true) + 'px, -' + rand(5, 15, true) + 'px)';
-            }
+            span.style.transform = `translate(${rand(-20, 20, true)}px, ${rand(-20, 20, true)}px)`;
+            // span.style.color = `rgb(${rand(0, 255)}, ${rand(0, 255)}, ${rand(0, 255)})`;
+            span.style.fontFamily = `'Courier New', Courier, monospace`;
+            span.style.textShadow = `${rand(-2, 2)}px ${rand(-2, 2)}px 2px rgba(${rand(0, 255)}, ${rand(0, 255)}, ${rand(0, 255)}, 0.5)`;
 
             setTimeout(function() {
-                glitchCharacter(span, randomgBackForth - 1)
+                glitchCharacter(span, iterations - 1)
             }, 50);
         }
 
-        function glitchText(spans) {
+        function glitchText(spans, numberGlitches = 3, delayMin = 0, delayMax = 500) {
+            for (var i = 0; i < rand(1, 3, true); i++) {
+                var spanIndex = rand(0,  spans.length - 1, true);
+                setTimeout(glitchCharacter, rand(delayMin, delayMax), spans[spanIndex], rand(0, numberGlitches, true));
+            }
+        }
+
+        function glitchTextClock(spans) {
             setInterval(function() {
-                for (var i = 0; i < rand(1, 3, true); i++) {
-                    var spanIndex = rand(0,  spans.length - 1, true);
-                    setTimeout(glitchCharacter, rand(0, 500), spans[spanIndex], rand(0, 3, true));
-                }
-            }, rand(1000, 3000));
+                glitchText(spans);
+            }, rand(1500, 3000));
         }
 
         // glitch effect
         function glitch() {
-            var glitch = document.getElementsByClassName('glitched-text');
+            var glitch = document.getElementsByClassName('glitched-text-clock');
             for (var i = 0; i < glitch.length; i++) {
-                var text = glitch[i].textContent;
-                var splitText = text.split('');
-                glitch[i].textContent = '';
-                for (var j = 0; j < splitText.length; j++) {
-                    if (splitText[j] === ' ') {
-                        glitch[i].innerHTML += ' ';
-                    } else {
-                        glitch[i].innerHTML += '<span>' + splitText[j] + '</span>';
+                spans = prepareTextForGlitch(glitch[i]);
+                glitchTextClock(spans);
+            }
+
+            var glitchOver = document.getElementsByClassName('glitched-text-over');
+            for (var i = 0; i < glitchOver.length; i++) {
+                spans = prepareTextForGlitch(glitchOver[i]);
+                glitchOver[i].addEventListener("mouseenter", (function(local_spans) {
+                    return function() {
+                        glitchText(local_spans, 5, 0, 100);
                     }
-                }
-                var spans = glitch[i].getElementsByTagName('span');
-                glitchText(spans);
+                })(spans));
             }
         }
 
@@ -74,53 +94,58 @@
 <body>
     <div id="background"><div id="grain"></div></div>
 
-    <div id="title">
-        <div class="glitched-text">matthieu abily</div>
-        <div id="subtitle" class="glitched-text">dop</div>
+    <div id="title" class="ink-highlighted">
+        <div class="glitched-text noise-text">matthieu abily - dop</div>
     </div>
 
-    <div id="menu">
-        <div class="item">
-            <a href="#">stills</a>
+    <div id="menu" class="ink-highlighted">
+        <div class="item glitched-text glitched-text-over">
+            <a href="#">showreel</a>
         </div>
-        <div class="item">
+        <div class="item glitched-text glitched-text-over">
             <a href="#">contact</a>
         </div>
     </div>
 
     <div id="content">
-        <ul class="images-gallery">
-            <li>
-                <div class="img-border">
-                    <img src="images/projects/FR/BELFFIRE01_1.30.1.png" alt="">
-                </div>
-            </li>
-            <li>
-                <div class="img-border">
-                    <img src="images/projects/FR/FERROUGEGRAB_GRADED_03.jpg" alt="">
-                </div>
-            </li>
-            <li>
-                <div class="img-border">
-                    <img src="images/projects/FR/V1-0002_A0003F_S001_S001_T058.2437.Still007.png" alt="">
-                </div>
-            </li>
-            <li>
-                <div class="img-border">
-                    <img src="images/projects//OF/2Screen Shot 2018-06-17 at 22.39.05.jpg" alt="">
-                </div>
-            </li>
-            <li>
-                <div class="img-border">
-                    <img src="images/projects//OF/OF1C.jpg" alt="">
-                </div>
-            </li>
-            <li>
-                <div class="img-border">
-                    <img src="images/projects//OF/OF2.jpg" alt="">
-                </div>
-            </li>
-        </ul>
+        <div class="images-gallery">
+            <div class="img-container">
+                <img src="images/projects/CR/CRIMSON_1_2.png" alt="">
+                <span class="label">pas ouf les fonts</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/CR/Timeline 1_01_03_43_19.png" alt="">
+                <span class="label">jungle diff</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/CR/Timeline 1_01_08_29_11_V2.png" alt="">
+                <span class="label">il a flash</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/FR/BELFFIRE01_1.30.1.png" alt="">
+                <span class="label">lane frozen</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/FR/FERROUGEGRAB_GRADED_03.jpg" alt="">
+                <span class="label">g pt un inib</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/FR/V1-0002_A0003F_S001_S001_T058.2437.Still007.png" alt="">
+                <span class="label">one more?</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/OF/2Screen Shot 2018-06-17 at 22.39.05.jpg" alt="">
+                <span class="label">one more?</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/OF/OF1C.jpg" alt="">
+                <span class="label">one more?</span>
+            </div>
+            <div class="img-container">
+                <img src="images/projects/OF/OF2.jpg" alt="">
+                <span class="label">one more?</span>
+            </div>
+        </div>
     </div>
 </body>
 </html>

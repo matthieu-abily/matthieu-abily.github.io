@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Fucktura';
+    src: url('HFucktura-Heavy.woff2') format('woff2'),
+        url('HFucktura-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fucktura';
+    src: url('HFucktura-Thin.woff2') format('woff2'),
+        url('HFucktura-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
