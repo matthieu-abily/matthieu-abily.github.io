@@ -129,31 +129,6 @@ html, body {
     text-decoration: none;
 }
 
-#content a .intro-element {
-    display: inline-block;
-    height: 75vh;
-    aspect-ratio: 1 / 0.977;
-    object-position: top left;
-    object-fit: cover;
-}
-#content a .intro-element {
-    animation: eye-frames .4s steps(4) infinite;
-    -webkit-animation: eye-frames .4s steps(4) infinite;
-    -moz-animation: eye-frames .4s steps(4) infinite;
-    -ms-animation: eye-frames .4s steps(4) infinite;
-    -o-animation: eye-frames .4s steps(4) infinite;
-    animation-direction: alternate;
-    -webkit-animation-direction: alternate;
-    -moz-animation-direction: alternate;
-    -ms-animation-direction: alternate;
-    -o-animation-direction: alternate;
-}
-
-@keyframes eye-frames {
-    from { object-position:    0px; }
-      to { object-position: -4000px 0; }
-}
-
 .glitched-text {
     position: relative;
 
@@ -268,8 +243,8 @@ html, body {
     #menu .item {
         margin-left: 0.15em;
     }
-
-    #content .images-gallery li {
-        flex: 0 0 100%;
+    
+    #content .images-gallery {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
