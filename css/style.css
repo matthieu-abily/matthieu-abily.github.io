@@ -231,12 +231,12 @@ html, body {
 /* Mobile */
 @media only screen and (max-width: 767px) {
     #title {
-        font-size: 0.9em;
+        font-size: 0.85em;
         top: 10px; left: 10px;
     }
 
     #menu {
-        font-size: 0.7em;
+        font-size: 0.6em;
         top: 13px; right: 10px;
     }
 
