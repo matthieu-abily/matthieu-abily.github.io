@@ -332,8 +332,12 @@ body {
 }
 
 #contact {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
     text-align: center;
-    margin-top: 10%;
 }
 
 #contact a {
@@ -369,8 +373,9 @@ body {
 }
 
 #footer {
-    margin-top: 10%;
-    margin-bottom: 1em;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     opacity: 0.5;
@@ -396,5 +401,17 @@ body {
 
     #content .images-gallery {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    #contact {
+        position: static;
+        transform: none;
+        margin-top: 10%;
+    }
+
+    #footer {
+        position: static;
+        margin-top: 10%;
+        margin-bottom: 1em;
     }
 }
