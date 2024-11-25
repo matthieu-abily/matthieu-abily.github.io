@@ -245,7 +245,7 @@ body {
 }
 
 #content .images-gallery {
-    --gallery-gap: 5px;
+    --gallery-gap: 2px;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
