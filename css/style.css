@@ -263,7 +263,7 @@ body {
 #content .images-gallery img {
     width: 100%;
     mask-image: url('../images/borders/inverted-burnt-1.png');
-    mask-size: cover;
+    mask-size: 100%;
 }
 
 #content .images-gallery .img-container .label {
