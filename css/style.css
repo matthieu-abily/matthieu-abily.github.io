@@ -266,6 +266,12 @@ body {
     mask-size: 100%;
 }
 
+@supports (mask-image: url('../images/borders/inverted-burnt-1.webp')) {
+    #content .images-gallery img {
+        mask-image: url('../images/borders/inverted-burnt-1.webp');
+    }
+}
+
 #content .images-gallery .img-container .label {
     position: absolute;
     bottom: 15px;

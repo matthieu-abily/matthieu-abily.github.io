@@ -1,0 +1,40 @@
+name: Optimize Images
+
+on:
+  push:
+    paths:
+      - "**.png"
+      - "**.jpg"
+      - "**.jpeg"
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Optimize Images
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          jpegQuality: "80"
+          pngQuality: "80"
+          webpQuality: "80"
+          ignorePaths: "node_modules/**,build/**"
+          compressOnly: true
+
+      - name: Create WebP versions
+        uses: xpublisher/webp-images-action@1.0.1
+        with:
+          image_path: images
+          fallback: true
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "Optimize images [skip ci]"
+          git push
