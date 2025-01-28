@@ -30,22 +30,19 @@ jobs:
           # Create optimized directory if it doesn't exist
           mkdir -p images/optimized
 
-          # Function to create WebP while preserving directory structure
-          process_image() {
-            local file="$1"
-            local dir=$(dirname "$file")
-            local filename=$(basename "$file")
-            local name="${filename%.*}"
+          # Process all images except those in optimized directory
+          find images -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "*/optimized/*" | while read file; do
+            # Get the directory and filename
+            dir=$(dirname "$file")
+            filename=$(basename "$file")
+            name="${filename%.*}"
             
             # Create corresponding directory in optimized
-            mkdir -p "images/optimized/$dir"
+            mkdir -p "images/optimized/${dir#images/}"
             
             # Convert to high-quality WebP
-            cwebp -q 90 "$file" -o "images/optimized/$dir/$name.webp"
-          }
-
-          # Process all images except those in optimized directory
-          find images -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "*/optimized/*" -exec bash -c 'process_image "$0"' {} \;
+            cwebp -q 90 "$file" -o "images/optimized/${dir#images/}/$name.webp"
+          done
 
       - name: Commit and push changes
         run: |
