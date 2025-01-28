@@ -3,9 +3,9 @@ name: Optimize Images
 on:
   push:
     paths:
-      - "**.png"
-      - "**.jpg"
-      - "**.jpeg"
+      - "images/projects/**/*.png"
+      - "images/projects/**/*.jpg"
+      - "images/projects/**/*.jpeg"
   workflow_dispatch:
 
 jobs:
@@ -28,20 +28,21 @@ jobs:
       - name: Create WebP versions
         run: |
           # Create optimized directory if it doesn't exist
-          mkdir -p images/optimized
+          mkdir -p images/projects/optimized
 
-          # Process all images except those in optimized directory
-          find images -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "*/optimized/*" | while read file; do
+          # Process only images in the projects directory, excluding the optimized directory
+          find images/projects -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "*/optimized/*" | while read file; do
             # Get the directory and filename
             dir=$(dirname "$file")
             filename=$(basename "$file")
             name="${filename%.*}"
+            project=$(basename "$dir")
             
             # Create corresponding directory in optimized
-            mkdir -p "images/optimized/${dir#images/}"
+            mkdir -p "images/projects/optimized/$project"
             
             # Convert to high-quality WebP
-            cwebp -q 90 "$file" -o "images/optimized/${dir#images/}/$name.webp"
+            cwebp -q 90 "$file" -o "images/projects/optimized/$project/$name.webp"
           done
 
       - name: Commit and push changes
