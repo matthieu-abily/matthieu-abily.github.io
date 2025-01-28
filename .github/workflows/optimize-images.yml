@@ -42,7 +42,7 @@ jobs:
             mkdir -p "images/projects/optimized/$project"
             
             # Convert to high-quality WebP
-            cwebp -q 90 "$file" -o "images/projects/optimized/$project/$name.webp"
+            cwebp -q 90 -m 6 -af "$file" -o "images/projects/optimized/$project/$name.webp"
           done
 
       - name: Commit and push changes
