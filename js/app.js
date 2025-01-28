@@ -70,6 +70,30 @@ function glitch() {
     }
 }
 
+// Progressive image loading
+document.addEventListener('DOMContentLoaded', function() {
+  const progressiveImages = document.querySelectorAll('.progressive-image');
+  
+  progressiveImages.forEach(img => {
+    const originalSrc = img.getAttribute('data-original');
+    if (!originalSrc) return;
+
+    // Create a new image element to load the original in the background
+    const originalImage = new Image();
+    originalImage.src = originalSrc;
+    
+    // When the original image loads, replace the source
+    originalImage.onload = function() {
+      img.src = originalSrc;
+    };
+
+    // If the WebP fails to load, switch to original immediately
+    img.onerror = function() {
+      img.src = originalSrc;
+    };
+  });
+});
+
 window.addEventListener("load", function() {
     glitch();
 });
