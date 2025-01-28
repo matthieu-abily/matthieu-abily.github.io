@@ -23,13 +23,7 @@ jobs:
           pngQuality: "80"
           webpQuality: "80"
           ignorePaths: "node_modules/**,build/**"
-          compressOnly: true
-
-      - name: Create WebP versions
-        uses: xpublisher/webp-images-action@1.0.1
-        with:
-          image_path: images
-          fallback: true
+          compressOnly: false
 
       - name: Commit and push changes
         run: |
