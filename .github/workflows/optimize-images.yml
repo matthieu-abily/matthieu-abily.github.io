@@ -15,20 +15,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Optimize Images
-        uses: calibreapp/image-actions@main
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          jpegQuality: "80"
-          pngQuality: "80"
-          webpQuality: "80"
-          ignorePaths: "node_modules/**,build/**"
-          compressOnly: false
+          node-version: "20"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp
+
+      - name: Create WebP versions
+        run: |
+          # Create optimized directory if it doesn't exist
+          mkdir -p images/optimized
+
+          # Function to create WebP while preserving directory structure
+          process_image() {
+            local file="$1"
+            local dir=$(dirname "$file")
+            local filename=$(basename "$file")
+            local name="${filename%.*}"
+            
+            # Create corresponding directory in optimized
+            mkdir -p "images/optimized/$dir"
+            
+            # Convert to high-quality WebP
+            cwebp -q 90 "$file" -o "images/optimized/$dir/$name.webp"
+          }
+
+          # Process all images except those in optimized directory
+          find images -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "*/optimized/*" -exec bash -c 'process_image "$0"' {} \;
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "Optimize images [skip ci]"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Add WebP versions of images [skip ci]"
           git push
