@@ -27,22 +27,15 @@ jobs:
 
       - name: Create WebP versions
         run: |
-          # Create optimized directory if it doesn't exist
-          mkdir -p images/projects/optimized
-
-          # Process only images in the projects directory, excluding the optimized directory
-          find images/projects -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "*/optimized/*" | while read file; do
+          # Process only images in the projects directory, excluding already optimized files
+          find images/projects -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -name "*.optimized.webp" | while read file; do
             # Get the directory and filename
             dir=$(dirname "$file")
             filename=$(basename "$file")
             name="${filename%.*}"
-            project=$(basename "$dir")
             
-            # Create corresponding directory in optimized
-            mkdir -p "images/projects/optimized/$project"
-            
-            # Convert to high-quality WebP
-            cwebp -q 75 -m 6 -af "$file" -o "images/projects/optimized/$project/$name.webp"
+            # Convert to high-quality WebP next to original file
+            cwebp -q 75 -m 6 -af "$file" -o "$dir/$name.optimized.webp"
           done
 
       - name: Commit and push changes
